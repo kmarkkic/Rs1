@@ -1,4 +1,5 @@
 ﻿using Market.Domain.Common;
+using Market.Domain.Entities.Identity;
 using Market.Domain.Entities.Sales;
 
 namespace Market.Domain.Entities.Catalog;
@@ -6,35 +7,50 @@ namespace Market.Domain.Entities.Catalog;
 /// <summary>
 /// Represents a product in the system.
 /// </summary>
-public class ProductEntity : BaseEntity
+public class ProductEntity : BaseEntity // Zivotinja
 {
-    /// <summary>
-    /// Name of the product.
-    /// </summary>
+
+    // ime zivotinje
     public string Name { get; set; }
 
-    /// <summary>
-    /// Product description. (optional)
-    /// </summary>
+    // ID vlasnika zivotinje
+    public int OwnerId { get; set; }
+
+    // Referenca na vlasnika zivotinje
+    public MarketUserEntity? Owner { get; set; }
+
+    // Opis zivotinje
     public string? Description { get; set; }
 
-    /// <summary>
-    /// Price of the product.
-    /// </summary>
-    public decimal Price { get; set; }
+    // Je li zivotinja vakcinisana
+    public bool isVaccinated { get; set; }
+
+    // Je li zivotinja udomljena
+
+    public bool isAdopted { get; set; }
+
+    // Je li zivotinja sterlizisana
+
+    public  bool isSterilized { get; set; } 
+
+
+    // Starost zivotinje
+    public int Age { get; set; }
 
     /// <summary>
-    /// Quantity of the product available in stock.
+    /// Spol zivotinje (npr. "M" za mužjak, "F" za ženka, "U" za nepoznato).
     /// </summary>
-    public int StockQuantity { get; set; }
+    public string Gender { get; set; }
+
+    
 
     /// <summary>
-    /// Identifier of the category to which the product belongs.
+    /// Tip zivotinje .
     /// </summary>
     public int CategoryId { get; set; }
 
     /// <summary>
-    /// Navigation reference to the product's category.
+    /// Navigacija za zivotinjin tip.
     /// </summary>
     public ProductCategoryEntity? Category { get; set; }
 
