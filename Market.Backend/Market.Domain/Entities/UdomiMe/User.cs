@@ -18,6 +18,11 @@ namespace Market.Domain.Entities.UdomiMe
         string Address { get; set; }
         bool IsAdmin { get; set; }
 
+        public ICollection<Favourite> Favorites { get; set; } = new List<Favourite>();
         public ICollection<Animal> Animals { get; set; } = new List<Animal>();
+
+        public ICollection<AdoptionRequest> AdoptionRequest { get; set; } = new List<AdoptionRequest>();
+
+        public ICollection<VisitRequest> VisitRequest { get; set; } = new List<VisitRequest>();
     }
 }

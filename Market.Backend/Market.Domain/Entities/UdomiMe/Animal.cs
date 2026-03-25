@@ -28,14 +28,19 @@ namespace Market.Domain.Entities.UdomiMe
         public int shelterId { get; set; }
         public Shelter Shelter { get; set; }
 
-        public int City CityId { get; set; }
-        public City City { get; set; }  
-        
+       public int CityId { get; set; }
+        public City City { get; set; }
+
         public Breed BreedId { get; set; }
 
         public Breed Breed { get; set; }
 
+        public ICollection<AnimalImage> Images { get; set; } = new List<AnimalImage>();
 
+        public ICollection<AdoptionRequest> AdoptionRequests { get; set; } = new List<AdoptionRequest>();
+
+        public ICollection<VisitRequest> VisitRequest { get; set; } = new List<VisitRequest>(); 
+        public ICollection<Favourite> Favorites { get; set; } = new List<Favourite>();
 
     }
 }
