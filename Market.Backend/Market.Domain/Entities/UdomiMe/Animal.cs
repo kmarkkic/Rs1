@@ -12,35 +12,32 @@ namespace Market.Domain.Entities.UdomiMe
         public string Name { get; set; }
 
         public int OwnerId { get; set; }
-
         public User Owner { get; set; }
 
-        public int AnimalTypeId { get; set; }
+        public string Description { get; set; }
+        public bool IsVaccinated { get; set; }
+        public bool IsSterilized { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
 
+        public int AnimalTypeId { get; set; }
         public AnimalType AnimalType { get; set; }
 
+        public int? BreedId { get; set; }
+        public Breed? Breed { get; set; }
 
-        public int Age { get; set; }
-        public string Description { get; set; }
+        public int CityId { get; set; }
+        public City City { get; set; }
+
+        public int? ShelterId { get; set; }
+        public Shelter? Shelter { get; set; }
+
         public int AnimalStatusId { get; set; }
         public AnimalStatus AnimalStatus { get; set; }
 
-        public int shelterId { get; set; }
-        public Shelter Shelter { get; set; }
-
-       public int CityId { get; set; }
-        public City City { get; set; }
-
-        public Breed BreedId { get; set; }
-
-        public Breed Breed { get; set; }
-
-        public ICollection<AnimalImage> Images { get; set; } = new List<AnimalImage>();
-
-        public ICollection<AdoptionRequest> AdoptionRequests { get; set; } = new List<AdoptionRequest>();
-
-        public ICollection<VisitRequest> VisitRequest { get; set; } = new List<VisitRequest>(); 
+        public ICollection<AnimalImage> AnimalImages { get; set; } = new List<AnimalImage>();
         public ICollection<Favourite> Favorites { get; set; } = new List<Favourite>();
-
+        public ICollection<AdoptionRequest> AdoptionRequests { get; set; } = new List<AdoptionRequest>();
+        public ICollection<VisitRequest> VisitRequests { get; set; } = new List<VisitRequest>();
     }
 }

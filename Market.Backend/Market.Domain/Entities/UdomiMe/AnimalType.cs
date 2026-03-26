@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Market.Domain.Entities.UdomiMe
 {
+  
     public class AnimalType : BaseEntity
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Animal> Animals { get; set; } = new List<Animal>();
         public ICollection<Breed> Breeds { get; set; } = new List<Breed>();
-
-
     }
 }
