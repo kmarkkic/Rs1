@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Market.Domain.Entities.Catalog;
 using Market.Domain.Entities.Sales;
+=======
+>>>>>>> 74087fd (Initial commit)
 using Market.Domain.Entities.Identity;
 
 namespace Market.Infrastructure.Database.Seeders;
@@ -18,6 +21,7 @@ public static class DynamicDataSeeder
         // Osiguraj da baza postoji (bez migracija)
         await context.Database.EnsureCreatedAsync();
 
+<<<<<<< HEAD
         await SeedProductCategoriesAsync(context);
         await SeedUsersAsync(context);
         await SeedProductsAsync(context);
@@ -65,6 +69,11 @@ public static class DynamicDataSeeder
         }
     }
 
+=======
+    }
+
+    
+>>>>>>> 74087fd (Initial commit)
     /// <summary>
     /// Kreira demo korisnike ako ih još nema u bazi.
     /// </summary>
@@ -160,6 +169,7 @@ public static class DynamicDataSeeder
         Console.WriteLine("✅ Dynamic seed: demo users added.");
     }
 
+<<<<<<< HEAD
     /// <summary>
     /// Kreira demo proizvode ako ih još nema u bazi.
     /// </summary>
@@ -598,4 +608,8 @@ public static class DynamicDataSeeder
             CreatedAtUtc = DateTime.UtcNow
         };
     }
+=======
+
+
+>>>>>>> 74087fd (Initial commit)
 }

@@ -1,6 +1,10 @@
 ﻿// MarketUserEntity.cs
 using Market.Domain.Common;
+<<<<<<< HEAD
 using Market.Domain.Entities.Catalog;
+=======
+using Market.Domain.Entities.UdomiMe;
+>>>>>>> 74087fd (Initial commit)
 
 namespace Market.Domain.Entities.Identity;
 
@@ -16,8 +20,15 @@ public sealed class MarketUserEntity : BaseEntity
     public int TokenVersion { get; set; } = 0;// For global revocation
     public bool IsEnabled { get; set; }
     public ICollection<RefreshTokenEntity> RefreshTokens { get; private set; } = new List<RefreshTokenEntity>();
+<<<<<<< HEAD
 
     // Many-to-many: User's favorite products
     public ICollection<UserProductFavoriteEntity> FavoriteProducts { get; private set; } = new List<UserProductFavoriteEntity>();
+=======
+    public ICollection<Favourite> Favorites { get; set; } = new List<Favourite>();
+    public ICollection<Animal> Animals { get; set; } = new List<Animal>();
+    public ICollection<AdoptionRequest> AdoptionRequests { get; set; } = new List<AdoptionRequest>();
+    public ICollection<VisitRequest> VisitRequests { get; set; } = new List<VisitRequest>();
+>>>>>>> 74087fd (Initial commit)
 
 }

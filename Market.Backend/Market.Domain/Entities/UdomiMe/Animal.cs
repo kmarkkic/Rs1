@@ -1,4 +1,8 @@
 ﻿using Market.Domain.Common;
+<<<<<<< HEAD
+=======
+using Market.Domain.Entities.Identity;
+>>>>>>> 74087fd (Initial commit)
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +16,11 @@ namespace Market.Domain.Entities.UdomiMe
         public string Name { get; set; }
 
         public int OwnerId { get; set; }
+<<<<<<< HEAD
         public User Owner { get; set; }
+=======
+        public MarketUserEntity Owner { get; set; }
+>>>>>>> 74087fd (Initial commit)
 
         public string Description { get; set; }
         public bool IsVaccinated { get; set; }

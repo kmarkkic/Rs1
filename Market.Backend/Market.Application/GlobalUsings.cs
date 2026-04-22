@@ -5,7 +5,10 @@
 global using MediatR;
 global using FluentValidation;
 global using Market.Application.Abstractions;
+<<<<<<< HEAD
 global using Market.Domain.Entities.Catalog;
+=======
+>>>>>>> 74087fd (Initial commit)
 global using Market.Application.Common;
 global using Microsoft.EntityFrameworkCore;
 global using System.Text.Json.Serialization;
