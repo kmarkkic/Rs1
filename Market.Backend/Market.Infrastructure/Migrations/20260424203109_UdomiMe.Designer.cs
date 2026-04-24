@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260424173145_InicijalnaUdomiMe")]
-    partial class InicijalnaUdomiMe
+    [Migration("20260424203109_UdomiMe")]
+    partial class UdomiMe
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,134 +24,6 @@ namespace Market.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.ProductCategoryEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductCategories", (string)null);
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.ProductEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("StockQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isAdopted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isSterilized")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isVaccinated")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products", (string)null);
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.UserProductFavoriteEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FavoritedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId", "ProductId")
-                        .IsUnique();
-
-                    b.ToTable("UserProductFavorites", (string)null);
-                });
 
             modelBuilder.Entity("Market.Domain.Entities.Identity.MarketUserEntity", b =>
                 {
@@ -265,110 +137,6 @@ namespace Market.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("RefreshTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Sales.OrderEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MarketUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("PaidAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReferenceNumber")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MarketUserId");
-
-                    b.ToTable("Oders", (string)null);
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Sales.OrderItemEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("DiscountAmount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("DiscountPercent")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Quantity")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Total")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.AdoptionRequest", b =>
@@ -508,7 +276,7 @@ namespace Market.Infrastructure.Migrations
 
                     b.HasIndex("ShelterId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animals", (string)null);
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.AnimalImage", b =>
@@ -622,7 +390,7 @@ namespace Market.Infrastructure.Migrations
 
                     b.HasIndex("AnimalTypeId");
 
-                    b.ToTable("Breeds");
+                    b.ToTable("Breeds", (string)null);
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.City", b =>
@@ -723,7 +491,7 @@ namespace Market.Infrastructure.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Shelters");
+                    b.ToTable("Shelters", (string)null);
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.VisitRequest", b =>
@@ -761,36 +529,6 @@ namespace Market.Infrastructure.Migrations
                     b.ToTable("VisitRequests");
                 });
 
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.ProductEntity", b =>
-                {
-                    b.HasOne("Market.Domain.Entities.Catalog.ProductCategoryEntity", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.UserProductFavoriteEntity", b =>
-                {
-                    b.HasOne("Market.Domain.Entities.Catalog.ProductEntity", "Product")
-                        .WithMany("FavoritedByUsers")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Market.Domain.Entities.Identity.MarketUserEntity", "User")
-                        .WithMany("FavoriteProducts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Market.Domain.Entities.Identity.RefreshTokenEntity", b =>
                 {
                     b.HasOne("Market.Domain.Entities.Identity.MarketUserEntity", "User")
@@ -800,36 +538,6 @@ namespace Market.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Sales.OrderEntity", b =>
-                {
-                    b.HasOne("Market.Domain.Entities.Identity.MarketUserEntity", "MarketUser")
-                        .WithMany()
-                        .HasForeignKey("MarketUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("MarketUser");
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Sales.OrderItemEntity", b =>
-                {
-                    b.HasOne("Market.Domain.Entities.Sales.OrderEntity", "Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Market.Domain.Entities.Catalog.ProductEntity", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.AdoptionRequest", b =>
@@ -864,34 +572,36 @@ namespace Market.Infrastructure.Migrations
                     b.HasOne("Market.Domain.Entities.UdomiMe.AnimalStatus", "AnimalStatus")
                         .WithMany("Animals")
                         .HasForeignKey("AnimalStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Market.Domain.Entities.UdomiMe.AnimalType", "AnimalType")
                         .WithMany("Animals")
                         .HasForeignKey("AnimalTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Market.Domain.Entities.UdomiMe.Breed", "Breed")
                         .WithMany("Animals")
-                        .HasForeignKey("BreedId");
+                        .HasForeignKey("BreedId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Market.Domain.Entities.UdomiMe.City", "City")
                         .WithMany("Animals")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Market.Domain.Entities.Identity.MarketUserEntity", "Owner")
                         .WithMany("Animals")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Market.Domain.Entities.UdomiMe.Shelter", "Shelter")
                         .WithMany("Animals")
-                        .HasForeignKey("ShelterId");
+                        .HasForeignKey("ShelterId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("AnimalStatus");
 
@@ -922,7 +632,7 @@ namespace Market.Infrastructure.Migrations
                     b.HasOne("Market.Domain.Entities.UdomiMe.AnimalType", "AnimalType")
                         .WithMany("Breeds")
                         .HasForeignKey("AnimalTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AnimalType");
@@ -952,7 +662,7 @@ namespace Market.Infrastructure.Migrations
                     b.HasOne("Market.Domain.Entities.UdomiMe.City", "City")
                         .WithMany("Shelters")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("City");
@@ -977,34 +687,17 @@ namespace Market.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.ProductCategoryEntity", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Catalog.ProductEntity", b =>
-                {
-                    b.Navigation("FavoritedByUsers");
-                });
-
             modelBuilder.Entity("Market.Domain.Entities.Identity.MarketUserEntity", b =>
                 {
                     b.Navigation("AdoptionRequests");
 
                     b.Navigation("Animals");
 
-                    b.Navigation("FavoriteProducts");
-
                     b.Navigation("Favorites");
 
                     b.Navigation("RefreshTokens");
 
                     b.Navigation("VisitRequests");
-                });
-
-            modelBuilder.Entity("Market.Domain.Entities.Sales.OrderEntity", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Market.Domain.Entities.UdomiMe.AdoptionRequestStatus", b =>

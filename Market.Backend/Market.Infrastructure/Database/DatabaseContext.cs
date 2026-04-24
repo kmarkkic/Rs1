@@ -14,11 +14,8 @@ public partial class DatabaseContext : DbContext, IAppDbContext
         _clock = clock;
     }
 
-    // Identitet - OVO OSTAVLJAŠ (treba ti za korisnike)
     public DbSet<MarketUserEntity> Users => Set<MarketUserEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
-
-    // Udomljavanje životinja - OVO JE TVOJ DIO
     public DbSet<Animal> Animals => Set<Animal>();
     public DbSet<AnimalStatus> AnimalStatuses => Set<AnimalStatus>();
     public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
