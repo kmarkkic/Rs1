@@ -8,7 +8,11 @@
 
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+<<<<<<< HEAD
 	<PackageReference Include="MediatR" Version="8.1.0" />
+=======
+	<PackageReference Include="MediatR" Version="12.5.0" />
+>>>>>>> 74087fd (Initial commit)
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.21">
       <PrivateAssets>all</PrivateAssets>
@@ -21,7 +25,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+<<<<<<< HEAD
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+=======
+>>>>>>> 74087fd (Initial commit)
   </ItemGroup>
 
   <ItemGroup>
