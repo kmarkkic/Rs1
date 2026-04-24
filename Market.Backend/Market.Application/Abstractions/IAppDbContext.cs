@@ -1,27 +1,23 @@
-<<<<<<< HEAD
-﻿using Market.Domain.Entities.Sales;
-=======
-﻿using Market.Domain.Entities.UdomiMe;
->>>>>>> 74087fd (Initial commit)
+using Market.Domain.Entities.Sales;
+using Market.Domain.Entities.UdomiMe;
+using Market.Domain.Entities.Identity; // Ovo će ti vjerojatno trebati za MarketUserEntity
+using Microsoft.EntityFrameworkCore;
 
 namespace Market.Application.Abstractions;
 
-// Application layer
 public interface IAppDbContext
 {
-<<<<<<< HEAD
+    // Identitet i bazične stvari
+    DbSet<MarketUserEntity> Users { get; }
+    DbSet<RefreshTokenEntity> RefreshTokens { get; }
+
+    // Prodaja (Sales)
     DbSet<ProductEntity> Products { get; }
     DbSet<ProductCategoryEntity> ProductCategories { get; }
-    DbSet<MarketUserEntity> Users { get; }
-    DbSet<RefreshTokenEntity> RefreshTokens { get; }
-
-    DbSet<OrderEntity> Orders{ get; }
+    DbSet<OrderEntity> Orders { get; }
     DbSet<OrderItemEntity> OrderItems { get; }
-=======
 
-
-    DbSet<MarketUserEntity> Users { get; }
-    DbSet<RefreshTokenEntity> RefreshTokens { get; }
+    // Udomljavanje (UdomiMe)
     DbSet<Animal> Animals { get; }
     DbSet<AnimalStatus> AnimalStatuses { get; }
     DbSet<AnimalType> AnimalTypes { get; }
@@ -33,7 +29,6 @@ public interface IAppDbContext
     DbSet<Shelter> Shelters { get; }
     DbSet<VisitRequest> VisitRequests { get; }
     DbSet<Favourite> Favourites { get; }
->>>>>>> 74087fd (Initial commit)
 
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

@@ -1,59 +1,44 @@
 ﻿using Market.Application.Abstractions;
-<<<<<<< HEAD
 using Market.Domain.Entities.Sales;
-=======
->>>>>>> 74087fd (Initial commit)
+using Market.Domain.Entities.Catalog; // Dodano za Product entitete
+using Market.Domain.Entities.Identity;
+using Market.Domain.Entities.UdomiMe;
+using Microsoft.EntityFrameworkCore;
 
 namespace Market.Infrastructure.Database;
 
 public partial class DatabaseContext : DbContext, IAppDbContext
 {
-<<<<<<< HEAD
-    public DbSet<ProductCategoryEntity> ProductCategories => Set<ProductCategoryEntity>();
-    public DbSet<ProductEntity> Products => Set<ProductEntity>();
-    public DbSet<MarketUserEntity> Users => Set<MarketUserEntity>();
-    public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
-
-    public DbSet<OrderEntity> Orders => Set<OrderEntity>();
-    public DbSet<OrderItemEntity> OrderItems => Set<OrderItemEntity>();
-
     private readonly TimeProvider _clock;
 
-
-=======
-    public DbSet<MarketUserEntity> Users => Set<MarketUserEntity>();
-    public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
->>>>>>> 74087fd (Initial commit)
-    public DbSet<Market.Domain.Entities.UdomiMe.Animal> Animals => Set<Market.Domain.Entities.UdomiMe.Animal>();
-    public DbSet<Market.Domain.Entities.UdomiMe.AnimalStatus> AnimalStatuses => Set<Market.Domain.Entities.UdomiMe.AnimalStatus>();
-    public DbSet<Market.Domain.Entities.UdomiMe.AnimalType> AnimalTypes => Set<Market.Domain.Entities.UdomiMe.AnimalType>();
-    public DbSet<Market.Domain.Entities.UdomiMe.Breed> Breeds => Set<Market.Domain.Entities.UdomiMe.Breed>();
-    public DbSet<Market.Domain.Entities.UdomiMe.AnimalImage> AnimalImages => Set<Market.Domain.Entities.UdomiMe.AnimalImage>();
-    public DbSet<Market.Domain.Entities.UdomiMe.AdoptionRequest> AdoptionRequests => Set<Market.Domain.Entities.UdomiMe.AdoptionRequest>();
-    public DbSet<Market.Domain.Entities.UdomiMe.AdoptionRequestStatus> AdoptionRequestStatuses => Set<Market.Domain.Entities.UdomiMe.AdoptionRequestStatus>();
-<<<<<<< HEAD
-    public DbSet <Market.Domain.Entities.UdomiMe.City> Cities => Set<Market.Domain.Entities.UdomiMe.City>();    
-    public DbSet<Market.Domain.Entities.UdomiMe.Shelter> Shelters => Set<Market.Domain.Entities.UdomiMe.Shelter>();
-    public DbSet <Market.Domain.Entities.UdomiMe.VisitRequest> VisitRequests => Set<Market.Domain.Entities.UdomiMe.VisitRequest>(); 
-    public DbSet<Market.Domain.Entities.UdomiMe.Favourite> Favourites => Set<Market.Domain.Entities.UdomiMe.Favourite>();
-    public DbSet<Market.Domain.Entities.UdomiMe.User> UsersUdomiMe => Set<Market.Domain.Entities.UdomiMe.User>();
-    
-
-=======
-    public DbSet<Market.Domain.Entities.UdomiMe.City> Cities => Set<Market.Domain.Entities.UdomiMe.City>();
-    public DbSet<Market.Domain.Entities.UdomiMe.Shelter> Shelters => Set<Market.Domain.Entities.UdomiMe.Shelter>();
-    public DbSet<Market.Domain.Entities.UdomiMe.VisitRequest> VisitRequests => Set<Market.Domain.Entities.UdomiMe.VisitRequest>();
-    public DbSet<Market.Domain.Entities.UdomiMe.Favourite> Favourites => Set<Market.Domain.Entities.UdomiMe.Favourite>();
-
-    private readonly TimeProvider _clock;
->>>>>>> 74087fd (Initial commit)
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)
     {
         _clock = clock;
     }
-<<<<<<< HEAD
 
+    // Identitet
+    public DbSet<MarketUserEntity> Users => Set<MarketUserEntity>();
+    public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
 
-=======
->>>>>>> 74087fd (Initial commit)
+    // Katalog i Prodaja (Tvoj dio)
+    public DbSet<ProductCategoryEntity> ProductCategories => Set<ProductCategoryEntity>();
+    public DbSet<ProductEntity> Products => Set<ProductEntity>();
+    public DbSet<OrderEntity> Orders => Set<OrderEntity>();
+    public DbSet<OrderItemEntity> OrderItems => Set<OrderItemEntity>();
+
+    // Udomljavanje životinja (Aminov dio)
+    public DbSet<Animal> Animals => Set<Animal>();
+    public DbSet<AnimalStatus> AnimalStatuses => Set<AnimalStatus>();
+    public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
+    public DbSet<Breed> Breeds => Set<Breed>();
+    public DbSet<AnimalImage> AnimalImages => Set<AnimalImage>();
+    public DbSet<AdoptionRequest> AdoptionRequests => Set<AdoptionRequest>();
+    public DbSet<AdoptionRequestStatus> AdoptionRequestStatuses => Set<AdoptionRequestStatus>();
+    public DbSet<City> Cities => Set<City>();
+    public DbSet<Shelter> Shelters => Set<Shelter>();
+    public DbSet<VisitRequest> VisitRequests => Set<VisitRequest>();
+    public DbSet<Favourite> Favourites => Set<Favourite>();
+
+    // Napomena: Task SaveChangesAsync je već definiran u baznoj DbContext klasi, 
+    // pa ga samo interfejs IAppDbContext treba "vidjeti".
 }
