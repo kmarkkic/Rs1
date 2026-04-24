@@ -1,21 +1,14 @@
-using Market.Domain.Entities.Sales;
+using Market.Domain.Entities.Identity;
 using Market.Domain.Entities.UdomiMe;
-using Market.Domain.Entities.Identity; // Ovo će ti vjerojatno trebati za MarketUserEntity
 using Microsoft.EntityFrameworkCore;
 
 namespace Market.Application.Abstractions;
 
 public interface IAppDbContext
 {
-    // Identitet i bazične stvari
+    // Identitet
     DbSet<MarketUserEntity> Users { get; }
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
-
-    // Prodaja (Sales)
-    DbSet<ProductEntity> Products { get; }
-    DbSet<ProductCategoryEntity> ProductCategories { get; }
-    DbSet<OrderEntity> Orders { get; }
-    DbSet<OrderItemEntity> OrderItems { get; }
 
     // Udomljavanje (UdomiMe)
     DbSet<Animal> Animals { get; }

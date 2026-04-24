@@ -1,6 +1,4 @@
 ﻿using Market.Application.Abstractions;
-using Market.Domain.Entities.Sales;
-using Market.Domain.Entities.Catalog; // Dodano za Product entitete
 using Market.Domain.Entities.Identity;
 using Market.Domain.Entities.UdomiMe;
 using Microsoft.EntityFrameworkCore;
@@ -16,17 +14,11 @@ public partial class DatabaseContext : DbContext, IAppDbContext
         _clock = clock;
     }
 
-    // Identitet
+    // Identitet - OVO OSTAVLJAŠ (treba ti za korisnike)
     public DbSet<MarketUserEntity> Users => Set<MarketUserEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
 
-    // Katalog i Prodaja (Tvoj dio)
-    public DbSet<ProductCategoryEntity> ProductCategories => Set<ProductCategoryEntity>();
-    public DbSet<ProductEntity> Products => Set<ProductEntity>();
-    public DbSet<OrderEntity> Orders => Set<OrderEntity>();
-    public DbSet<OrderItemEntity> OrderItems => Set<OrderItemEntity>();
-
-    // Udomljavanje životinja (Aminov dio)
+    // Udomljavanje životinja - OVO JE TVOJ DIO
     public DbSet<Animal> Animals => Set<Animal>();
     public DbSet<AnimalStatus> AnimalStatuses => Set<AnimalStatus>();
     public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
@@ -38,7 +30,4 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<Shelter> Shelters => Set<Shelter>();
     public DbSet<VisitRequest> VisitRequests => Set<VisitRequest>();
     public DbSet<Favourite> Favourites => Set<Favourite>();
-
-    // Napomena: Task SaveChangesAsync je već definiran u baznoj DbContext klasi, 
-    // pa ga samo interfejs IAppDbContext treba "vidjeti".
 }
