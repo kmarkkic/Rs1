@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MediatR;
 using Market.Application.UdomiMe_DTO;
+using MediatR;
 
-namespace Market.Application.Modules.Cities.Commands.CreateCity
+namespace Market.Application.Modules.Cities.Queries.GetCities
 {
-    public record CreateCityCommand(string Name) : IRequest<CityDTO>;   
-   
+    public class GetCitiesQuery : IRequest<List<CityDTO>>
+    {
+    }
 }

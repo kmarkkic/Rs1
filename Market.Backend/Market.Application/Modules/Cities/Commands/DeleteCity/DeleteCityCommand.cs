@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Cities.Commands.DeleteCity
 {
-    public class DeleteCityCommand : IRequest
-    {
-        public int Id { get; set; }
-    }
+    public record DeleteCityCommand(int Id) : IRequest; 
+ 
 }

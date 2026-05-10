@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using Market.Application.UdomiMe_DTO;
 using MediatR;
 
-namespace Market.Application.Modules.Cities.Queries.GetCitites
+namespace Market.Application.Modules.Cities.Queries.GetCitiesById
 {
-    public class GetCitiesQuery : IRequest<List<CityDTO>>
-    {
-    }
+    public record class GetCityByIdQuery(int Id) : IRequest<CityDTO>;
+
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Market.Application.UdomiMe_DTO;
 
-namespace Market.Application.Modules.Cities.Queries.GetCitites
+namespace Market.Application.Modules.Cities.Queries.GetCities
 {
     public class GetCitiesQueryHandler : IRequestHandler<GetCitiesQuery, List<CityDTO>>
     {

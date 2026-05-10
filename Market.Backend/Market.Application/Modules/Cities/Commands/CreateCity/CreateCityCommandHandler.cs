@@ -18,9 +18,7 @@ namespace Market.Application.Modules.Cities.Commands.CreateCity
         {
             var city = new City
             {
-                Name = request.Name,
-                IsDeleted = false,
-                CreatedAtUtc = DateTime.UtcNow
+                Name = request.Name
             };
             _context.Cities.Add(city);
             await _context.SaveChangesAsync(cancellationToken);
