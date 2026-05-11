@@ -10,10 +10,10 @@ namespace Market.Application.UdomiMe_DTO
     {
         
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int AnimalTypeId { get; set; }
 
 
-        public AnimalTypesDTO AnimalType { get; set; }
+        public AnimalTypesDTO? AnimalType { get; set; }
     }
 }
