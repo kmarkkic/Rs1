@@ -14,9 +14,6 @@ namespace Market.Application.UdomiMe_DTO
         public string Message { get; set; }
         public int StatusId { get; set; }
 
-        // Pomoćna polja za prikaz na frontendu
-        public string UserFullName { get; set; } // Mapiraš iz Users (Firstname + Lastname)
-        public string AnimalName { get; set; }   // Mapiraš iz Animals
-        public string StatusName { get; set; }   // Mapiraš iz AdoptionRequestStatuses
+        
     }
 }

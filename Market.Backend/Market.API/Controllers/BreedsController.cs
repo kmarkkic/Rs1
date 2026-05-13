@@ -56,6 +56,7 @@ namespace Market.API.Controllers
                     return NotFound();
                 }
                 return Ok(result);
-        }
+            }
+        
     }
 }
