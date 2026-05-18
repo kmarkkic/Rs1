@@ -29,7 +29,8 @@ namespace Market.Domain.Entities.UdomiMe
 
         public int? ShelterId { get; set; }
         public Shelter? Shelter { get; set; }
-
+         
+ 
         public int AnimalStatusId { get; set; }
         public AnimalStatus AnimalStatus { get; set; }
 

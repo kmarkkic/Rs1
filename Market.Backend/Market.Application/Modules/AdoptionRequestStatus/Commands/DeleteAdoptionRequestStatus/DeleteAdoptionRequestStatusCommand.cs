@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.AdoptionRequestStatus.Commands.DeleteAdoptionRequestStatus
 {
-    public record AdoptionRequestStatusCommand()
-    {
-    }
+    public record DeleteAdoptionRequestStatusCommand(int Id) : IRequest;
+
 }

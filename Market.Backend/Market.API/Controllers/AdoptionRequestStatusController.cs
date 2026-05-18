@@ -1,4 +1,5 @@
 ﻿using Market.Application.Modules.AdoptionRequestStatus.Commands.CreateAdoptionRequestStatus;
+using Market.Application.Modules.AdoptionRequestStatus.Commands.DeleteAdoptionRequestStatus;
 using Market.Application.Modules.AdoptionRequestStatus.Queries.GetAdoptionRequest;
 using Market.Application.Modules.AdoptionRequestStatus.Queries.GetAdoptionRequestStatusById;
 using Market.Application.UdomiMe_DTO.Adoptions;
@@ -40,6 +41,15 @@ namespace Market.API.Controllers
         {
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        // delete adoption request status
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAdoptionRequestStatus(int id)
+        {
+            var command = new DeleteAdoptionRequestStatusCommand(id);
+            await _mediator.Send(command);
+            return Ok(command);
         }
     }
 }

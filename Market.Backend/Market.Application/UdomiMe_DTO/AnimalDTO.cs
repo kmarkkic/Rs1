@@ -27,6 +27,7 @@
         // Logička polja
         public bool IsVaccinated { get; set; }
         public bool IsSterilized { get; set; }
-        public bool IsAdopted { get; set; }
+        
+        public int CityId { get; set; }
     }
 }
