@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Market.Application.Abstractions;
 
+
 namespace Market.Application.Modules.AnimalImages.Commands.AddAnimalImage
 {
     public class AddAnimalImageCommandHandler : IRequestHandler<AddAnimalImageCommand, int>
@@ -14,7 +15,7 @@ namespace Market.Application.Modules.AnimalImages.Commands.AddAnimalImage
 
         public async Task<int> Handle(AddAnimalImageCommand request, CancellationToken cancellationToken)
         {
-            var animalImage = new Domain.Entities.UdomiMe.AnimalImages
+            var animalImage = new Domain.Entities.UdomiMe.AnimalImage
             {
                 AnimalId = request.AnimalId,
                 ImageUrl = request.ImageUrl

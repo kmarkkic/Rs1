@@ -12,6 +12,7 @@ namespace Market.Application.UdomiMe_DTO
         public int UserId { get; set; }
         public int AnimalId { get; set; }
         public DateTime VisitDate { get; set; }
+        public string Note { get; set; }
 
         // Objekti da na listi vidiš tko dolazi i koju životinju posjećuje
         public string UserFullName { get; set; }
