@@ -18,5 +18,6 @@ namespace Market.Domain.Entities.UdomiMe
         public int AnimalId { get; set; }
         public Animal Animal { get; set; }
         public DateTime VisitDate { get; set; }
+        public string Note { get; set; }
     }
 }
