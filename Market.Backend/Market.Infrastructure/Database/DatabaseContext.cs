@@ -27,4 +27,8 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<Shelter> Shelters => Set<Shelter>();
     public DbSet<VisitRequest> VisitRequests => Set<VisitRequest>();
     public DbSet<Favourite> Favourites => Set<Favourite>();
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Review> Reviews { get; set; }
+    public DbSet<AnimalHealthRecord> AnimalHealthRecords { get; set; }
+    public DbSet<Message> Messages { get; set; }
 }

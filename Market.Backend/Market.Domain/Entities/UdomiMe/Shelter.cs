@@ -18,5 +18,6 @@ namespace Market.Domain.Entities.UdomiMe
         public City City { get; set; }
 
         public ICollection<Animal> Animals { get; set; } = new List<Animal>();
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

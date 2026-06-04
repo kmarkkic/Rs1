@@ -38,5 +38,6 @@ namespace Market.Domain.Entities.UdomiMe
         public ICollection<Favourite> Favorites { get; set; } = new List<Favourite>();
         public ICollection<AdoptionRequest> AdoptionRequests { get; set; } = new List<AdoptionRequest>();
         public ICollection<VisitRequest> VisitRequests { get; set; } = new List<VisitRequest>();
+        public ICollection<AnimalHealthRecord> HealthRecords { get; set; } = new List<AnimalHealthRecord>();
     }
 }
