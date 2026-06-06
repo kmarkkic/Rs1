@@ -22,6 +22,10 @@ public interface IAppDbContext
     DbSet<Shelter> Shelters { get; }
     DbSet<VisitRequest> VisitRequests { get; }
     DbSet<Favourite> Favourites { get; }
+    DbSet<Message> Messages { get; }
+    DbSet<Notification> Notifications { get; }
+    DbSet<Review> Reviews { get; }
+    DbSet<AnimalHealthRecord> AnimalHealthRecords { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct);
 }
