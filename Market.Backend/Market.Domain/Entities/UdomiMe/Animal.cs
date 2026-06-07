@@ -9,7 +9,6 @@ namespace Market.Domain.Entities.UdomiMe
 
         public int OwnerId { get; set; }
 
-        // Ostavljamo samo jedan ispravan Owner property
         public MarketUserEntity Owner { get; set; }
 
         public string Description { get; set; }

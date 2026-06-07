@@ -17,9 +17,19 @@ public class AnimalController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<AnimalDTO>>> GetAll(CancellationToken cancellationToken)
+    
+    public async Task<ActionResult<PageResult<AnimalDTO>>> GetAll(
+        [FromQuery] int? AnimalTypeId,
+        [FromQuery] int? BreedId,
+        [FromQuery] int? Age,
+        [FromQuery] int? AnimalStatusId,
+        [FromQuery] string? Gender,
+        [FromQuery] string? Name,
+        [FromQuery] PageRequest paging,
+        CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new GetAnimalsQuery(), cancellationToken);
+        var query = new GetAnimalsQuery(AnimalTypeId, BreedId, Age, Gender, Name, AnimalStatusId, paging);
+        var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 
