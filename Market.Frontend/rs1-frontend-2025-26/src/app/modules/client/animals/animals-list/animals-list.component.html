@@ -1,0 +1,20 @@
+<h2>Životinje</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Godine</th>
+      <th>Spol</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (animal of animals(); track animal.id) {
+      <tr>
+        <td>{{ animal.name }}</td>
+        <td>{{ animal.age }}</td>
+        <td>{{ animal.gender }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
