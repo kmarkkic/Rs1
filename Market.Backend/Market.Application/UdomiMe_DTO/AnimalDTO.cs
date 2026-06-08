@@ -21,10 +21,10 @@
         public ShelterDTO Shelter { get; set; }
         public AnimalStatusDTO AnimalStatus { get; set; } // Dodano za status (npr. "Available")
 
-        // Slike (Obavezno za Angular galeriju)
+       
         public List<AnimalImagesDTO> Images { get; set; } = new List<AnimalImagesDTO>();
 
-        // Logička polja
+        
         public bool IsVaccinated { get; set; }
         public bool IsSterilized { get; set; }
         
