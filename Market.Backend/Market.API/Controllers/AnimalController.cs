@@ -7,6 +7,9 @@ using Market.Application.UdomiMe_DTO;
 
 [ApiController]
 [Route("api/[controller]")]
+
+// Email:    admin@udomime.local
+ // Password: Admin123! //
 public class AnimalController : ControllerBase
 {
     private readonly IMediator _mediator;
