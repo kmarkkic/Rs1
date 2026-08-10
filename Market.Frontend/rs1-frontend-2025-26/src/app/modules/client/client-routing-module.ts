@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnimalsListComponent } from './animals/animals-list/animals-list.component';
+import { AdoptionRequestWizardComponent } from './animals/adoption-request-wizard/adoption-request-wizard.component';
 
 const routes: Routes = [
-  { path: 'animals', component: AnimalsListComponent }
+  { path: 'animals', component: AnimalsListComponent },
+  { path: 'animals/:animalId/adopt', component: AdoptionRequestWizardComponent }
 ];
 
 @NgModule({

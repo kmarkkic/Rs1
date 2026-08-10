@@ -1,0 +1,226 @@
+<div class="wizard-container">
+  <div *ngIf="isLoadingAnimal()" class="loading-center">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+
+  <!-- Success screen -->
+  <div *ngIf="isSubmitted()" class="success-container">
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <h2>Zahtjev uspješno poslan!</h2>
+    <p>Vaš zahtjev za udomljavanje životinje <strong>{{ animal()?.name }}</strong> je uspješno poslan. Sklonište će Vas kontaktirati putem e-maila.</p>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Nazad na listu životinja
+    </button>
+  </div>
+
+  <ng-container *ngIf="!isLoadingAnimal() && !isSubmitted()">
+    <div class="wizard-header">
+      <h2>Zahtjev za udomljavanje</h2>
+      <p class="wizard-subtitle">{{ animal()?.name }}</p>
+    </div>
+
+    <mat-stepper linear #stepper class="wizard-stepper">
+
+      <!-- Korak 1: Pregled životinje -->
+      <mat-step label="Životinja" [completed]="!!animal()">
+        <div class="step-content">
+          <h3>Odabrana životinja</h3>
+          <mat-card class="animal-card">
+            <mat-card-content>
+              <div class="animal-detail-row">
+                <span class="label">Ime:</span>
+                <span>{{ animal()?.name }}</span>
+              </div>
+              <div class="animal-detail-row">
+                <span class="label">Vrsta:</span>
+                <span>{{ animal()?.animalType?.name ?? '—' }}</span>
+              </div>
+              <div class="animal-detail-row">
+                <span class="label">Pasmina:</span>
+                <span>{{ animal()?.breed?.name ?? '—' }}</span>
+              </div>
+              <div class="animal-detail-row">
+                <span class="label">Godine:</span>
+                <span>{{ animal()?.age }}</span>
+              </div>
+              <div class="animal-detail-row">
+                <span class="label">Spol:</span>
+                <span>{{ animal()?.gender }}</span>
+              </div>
+              <div class="animal-detail-row">
+                <span class="label">Sklonište:</span>
+                <span>{{ animal()?.shelter?.name ?? '—' }}</span>
+              </div>
+              <div class="animal-detail-row" *ngIf="animal()?.description">
+                <span class="label">Opis:</span>
+                <span>{{ animal()?.description }}</span>
+              </div>
+              <div class="animal-badges">
+                <mat-chip *ngIf="animal()?.isVaccinated" color="primary">Vakcinisana</mat-chip>
+                <mat-chip *ngIf="animal()?.isSterilized" color="accent">Sterilisana</mat-chip>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="step-actions">
+            <button mat-stroked-button (click)="goBack()">Odustani</button>
+            <button mat-raised-button color="primary" matStepperNext>
+              Dalje
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- Korak 2: Lični podaci -->
+      <mat-step label="Lični podaci" [stepControl]="personalDataForm">
+        <div class="step-content">
+          <h3>Vaši lični podaci</h3>
+          <form [formGroup]="personalDataForm" class="step-form">
+            <div class="form-row two-col">
+              <mat-form-field appearance="outline">
+                <mat-label>Ime</mat-label>
+                <input matInput formControlName="firstName" maxlength="50" />
+                <mat-error *ngIf="hasPersonalError('firstName', 'required')">Obavezno polje</mat-error>
+                <mat-error *ngIf="hasPersonalError('firstName', 'minlength')">Minimalno 2 karaktera</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Prezime</mat-label>
+                <input matInput formControlName="lastName" maxlength="50" />
+                <mat-error *ngIf="hasPersonalError('lastName', 'required')">Obavezno polje</mat-error>
+                <mat-error *ngIf="hasPersonalError('lastName', 'minlength')">Minimalno 2 karaktera</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row two-col">
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail adresa</mat-label>
+                <input matInput formControlName="email" type="email" />
+                <mat-error *ngIf="hasPersonalError('email', 'required')">Obavezno polje</mat-error>
+                <mat-error *ngIf="hasPersonalError('email', 'email')">Neispravna e-mail adresa</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Broj telefona</mat-label>
+                <input matInput formControlName="phone" placeholder="+387 61 123 456" />
+                <mat-error *ngIf="hasPersonalError('phone', 'required')">Obavezno polje</mat-error>
+                <mat-error *ngIf="hasPersonalError('phone', 'pattern')">Neispravan format broja</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>
+              <mat-icon>arrow_back</mat-icon>
+              Nazad
+            </button>
+            <button mat-raised-button color="primary" matStepperNext
+              (click)="personalDataForm.markAllAsTouched()">
+              Dalje
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- Korak 3: Razlog udomljavanja -->
+      <mat-step label="Razlog" [stepControl]="reasonForm">
+        <div class="step-content">
+          <h3>Razlog udomljavanja</h3>
+          <p class="step-description">Opišite zašto želite udomiti ovu životinju i kakve uslove možete pružiti.</p>
+
+          <form [formGroup]="reasonForm" class="step-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Vaša poruka</mat-label>
+              <textarea matInput formControlName="reason" rows="6" maxlength="1000"
+                placeholder="Npr: Živim u kući s velikom baštom, imam iskustva s uzgojem pasa..."></textarea>
+              <mat-hint align="end">{{ reasonLength }}/1000</mat-hint>
+              <mat-error *ngIf="hasReasonError('reason', 'required')">Obavezno polje</mat-error>
+              <mat-error *ngIf="hasReasonError('reason', 'minlength')">Minimalno 20 karaktera</mat-error>
+            </mat-form-field>
+          </form>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>
+              <mat-icon>arrow_back</mat-icon>
+              Nazad
+            </button>
+            <button mat-raised-button color="primary" matStepperNext
+              (click)="reasonForm.markAllAsTouched()">
+              Pregled
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- Korak 4: Pregled i potvrda -->
+      <mat-step label="Potvrda">
+        <div class="step-content">
+          <h3>Pregled zahtjeva</h3>
+
+          <mat-card class="summary-card">
+            <mat-card-header>
+              <mat-card-title>Životinja</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="summary-row">
+                <span class="label">Ime:</span>
+                <span>{{ animal()?.name }}</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">Vrsta / Pasmina:</span>
+                <span>{{ animal()?.animalType?.name }} / {{ animal()?.breed?.name }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card">
+            <mat-card-header>
+              <mat-card-title>Vaši podaci</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="summary-row">
+                <span class="label">Ime i prezime:</span>
+                <span>{{ personalDataForm.value.firstName }} {{ personalDataForm.value.lastName }}</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">E-mail:</span>
+                <span>{{ personalDataForm.value.email }}</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">Telefon:</span>
+                <span>{{ personalDataForm.value.phone }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card">
+            <mat-card-header>
+              <mat-card-title>Razlog udomljavanja</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="reason-text">{{ reasonForm.value.reason }}</p>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>
+              <mat-icon>arrow_back</mat-icon>
+              Nazad
+            </button>
+            <button mat-raised-button color="primary"
+              [disabled]="isSubmitting()"
+              (click)="onSubmit()">
+              <mat-icon>send</mat-icon>
+              {{ isSubmitting() ? 'Slanje...' : 'Pošalji zahtjev' }}
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </ng-container>
+</div>
