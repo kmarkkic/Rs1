@@ -13,7 +13,12 @@ namespace Market.Application.UdomiMe_DTO
         public int AnimalId { get; set; }
         public string Message { get; set; }
         public int StatusId { get; set; }
+        public DateTime CreatedAtUtc { get; set; }
 
-        
+        // Podaci za prikaz na frontendu (bez dodatnih poziva)
+        public string AnimalName { get; set; }
+        public string AnimalImageUrl { get; set; }
+        public string StatusName { get; set; }
+        public string ApplicantFullName { get; set; }
     }
 }

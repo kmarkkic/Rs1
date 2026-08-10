@@ -19,13 +19,22 @@ namespace Market.Application.Modules.AdoptionRequest.Queries.GetAdoptionRequests
         public Task<List<AdoptionRequestDTO>> Handle(GetAdoptionRequestsQuery request, CancellationToken cancellationToken)
         {
             var result = _context.AdoptionRequests
+                .Where(ar => !ar.IsDeleted)
                 .Select(ar => new AdoptionRequestDTO
                 {
                     Id = ar.Id,
                     UserId = ar.UserId,
                     AnimalId = ar.AnimalId,
                     Message = ar.Message,
-                    StatusId = ar.StatusId
+                    StatusId = ar.StatusId,
+                    CreatedAtUtc = ar.CreatedAtUtc,
+                    AnimalName = ar.Animal.Name,
+                    AnimalImageUrl = ar.Animal.AnimalImages
+                        .OrderBy(img => img.Id)
+                        .Select(img => img.ImageUrl)
+                        .FirstOrDefault(),
+                    StatusName = ar.Status.Name,
+                    ApplicantFullName = ar.User.FirstName + " " + ar.User.LastName
                 })
                 .ToList();
 

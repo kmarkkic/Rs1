@@ -26,7 +26,15 @@ namespace Market.Application.Modules.AdoptionRequest.Queries.GetAdoptionRequests
                     UserId = ar.UserId,
                     AnimalId = ar.AnimalId,
                     Message = ar.Message,
-                    StatusId = ar.StatusId
+                    StatusId = ar.StatusId,
+                    CreatedAtUtc = ar.CreatedAtUtc,
+                    AnimalName = ar.Animal.Name,
+                    AnimalImageUrl = ar.Animal.AnimalImages
+                        .OrderBy(img => img.Id)
+                        .Select(img => img.ImageUrl)
+                        .FirstOrDefault(),
+                    StatusName = ar.Status.Name,
+                    ApplicantFullName = ar.User.FirstName + " " + ar.User.LastName
                 })
                 .FirstOrDefaultAsync(cancellationToken);
 
