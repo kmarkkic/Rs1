@@ -1,0 +1,39 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.animal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 520px;
+  padding-top: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+
+  &.two-col {
+    mat-form-field {
+      flex: 1;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.checkboxes {
+  gap: 24px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+mat-dialog-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}

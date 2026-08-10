@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Izmijeni životinju' : 'Dodaj životinju' }}</h2>
+
+<mat-dialog-content>
+  <div *ngIf="isLoadingDropdowns" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <form *ngIf="!isLoadingDropdowns" [formGroup]="form" class="animal-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Ime</mat-label>
+        <input matInput formControlName="name" maxlength="100" />
+        <mat-error *ngIf="hasError('name', 'required')">Ime je obavezno</mat-error>
+        <mat-error *ngIf="hasError('name', 'minlength')">Minimalno 2 karaktera</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Opis</mat-label>
+        <textarea matInput formControlName="description" rows="3" maxlength="500"></textarea>
+        <mat-error *ngIf="hasError('description', 'maxlength')">Maksimalno 500 karaktera</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row two-col">
+      <mat-form-field appearance="outline">
+        <mat-label>Godine</mat-label>
+        <input matInput type="number" formControlName="age" min="0" max="50" />
+        <mat-error *ngIf="hasError('age', 'required')">Obavezno polje</mat-error>
+        <mat-error *ngIf="hasError('age', 'min') || hasError('age', 'max')">Vrijednost 0-50</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Spol</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let g of genderOptions" [value]="g.value">{{ g.label }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('gender', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row two-col">
+      <mat-form-field appearance="outline">
+        <mat-label>Vrsta životinje</mat-label>
+        <mat-select formControlName="animalTypeId">
+          <mat-option *ngFor="let t of animalTypes" [value]="t.id">{{ t.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('animalTypeId', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Pasmina</mat-label>
+        <mat-select formControlName="breedId">
+          <mat-option *ngFor="let b of filteredBreeds" [value]="b.id">{{ b.name }}</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="!form.get('animalTypeId')?.value">Odaberite vrstu prvo</mat-hint>
+        <mat-error *ngIf="hasError('breedId', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row two-col">
+      <mat-form-field appearance="outline">
+        <mat-label>Sklonište</mat-label>
+        <mat-select formControlName="shelterId">
+          <mat-option *ngFor="let s of shelters" [value]="s.id">{{ s.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('shelterId', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Grad</mat-label>
+        <mat-select formControlName="cityId">
+          <mat-option *ngFor="let c of cities" [value]="c.id">{{ c.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('cityId', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="animalStatusId">
+          <mat-option *ngFor="let s of animalStatuses" [value]="s.id">{{ s.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('animalStatusId', 'required')">Obavezno polje</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row checkboxes">
+      <mat-checkbox formControlName="isVaccinated">Vakcinisana</mat-checkbox>
+      <mat-checkbox formControlName="isSterilized">Sterilisana</mat-checkbox>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+    Odustani
+  </button>
+  <button mat-raised-button color="primary" [disabled]="isLoading || isLoadingDropdowns" (click)="onSubmit()">
+    <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+    {{ isEditMode ? 'Sačuvaj' : 'Dodaj' }}
+  </button>
+</mat-dialog-actions>

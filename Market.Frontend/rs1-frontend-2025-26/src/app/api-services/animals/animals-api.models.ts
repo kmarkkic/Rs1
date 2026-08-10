@@ -1,6 +1,37 @@
 import { PageResult } from "../../core/models/paging/page-result";
 import { BasePagedQuery } from "../../core/models/paging/base-paged-query";
 
+export interface CreateAnimalRequest {
+  name: string;
+  description: string | null;
+  age: number;
+  gender: string;
+  breedId: number;
+  animalTypeId: number;
+  shelterId: number;
+  ownerId: number;
+  cityId: number;
+  animalStatusId: number;
+  isVaccinated: boolean;
+  isSterilized: boolean;
+}
+
+export interface UpdateAnimalRequest {
+  id: number;
+  name: string;
+  description: string | null;
+  age: number;
+  gender: string;
+  breedId: number | null;
+  animalTypeId: number;
+  shelterId: number | null;
+  ownerId: number;
+  cityId: number;
+  animalStatusId: number;
+  isVaccinated: boolean;
+  isSterilized: boolean;
+}
+
 export class ListAnimalsRequest extends BasePagedQuery {
     animalTypeId?: number | null;
     breedId?: number | null;

@@ -1,20 +1,54 @@
-<h2>Životinje</h2>
+<div class="animals-list-header">
+  <h2>Životinje</h2>
+  <button mat-raised-button color="primary" (click)="openCreateDialog()">
+    <mat-icon>add</mat-icon>
+    Dodaj životinju
+  </button>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Ime</th>
-      <th>Godine</th>
-      <th>Spol</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (animal of animals(); track animal.id) {
-      <tr>
-        <td>{{ animal.name }}</td>
-        <td>{{ animal.age }}</td>
-        <td>{{ animal.gender }}</td>
-      </tr>
-    }
-  </tbody>
+<table mat-table [dataSource]="animals()" class="animals-table">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Ime</th>
+    <td mat-cell *matCellDef="let animal">{{ animal.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef>Godine</th>
+    <td mat-cell *matCellDef="let animal">{{ animal.age }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef>Spol</th>
+    <td mat-cell *matCellDef="let animal">{{ animal.gender }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="breed">
+    <th mat-header-cell *matHeaderCellDef>Pasmina</th>
+    <td mat-cell *matCellDef="let animal">{{ animal.breed?.name ?? '—' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let animal">{{ animal.animalStatus?.name ?? '—' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Akcije</th>
+    <td mat-cell *matCellDef="let animal">
+      <button mat-icon-button color="primary" matTooltip="Izmijeni" (click)="openEditDialog(animal)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" matTooltip="Obriši" (click)="confirmDelete(animal)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">Nema životinja</td>
+  </tr>
 </table>
