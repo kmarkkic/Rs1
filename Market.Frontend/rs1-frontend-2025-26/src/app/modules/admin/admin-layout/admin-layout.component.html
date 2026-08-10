@@ -84,6 +84,18 @@
 
       <mat-divider></mat-divider>
 
+      <!-- ADOPTION REQUESTS SECTION -->
+      <div class="nav-section-title">
+        {{ 'ADMIN_PANEL.MENU.ADOPTION_REQUESTS_SECTION' | translate }}
+      </div>
+
+      <a mat-list-item routerLink="/client/adoption-requests" routerLinkActive="active">
+        <mat-icon matListItemIcon>pets</mat-icon>
+        <span matListItemTitle>{{ 'ADMIN_PANEL.MENU.ADOPTION_REQUESTS' | translate }}</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
       <!-- SYSTEM SECTION -->
       <div class="nav-section-title">
         {{ 'ADMIN_PANEL.MENU.SYSTEM' | translate }}

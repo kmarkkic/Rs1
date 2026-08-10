@@ -12,4 +12,9 @@ export interface AdoptionRequestDto {
   animalId: number;
   message: string;
   statusId: number;
+  createdAtUtc: string;
+  animalName: string;
+  animalImageUrl: string | null;
+  statusName: string;
+  applicantFullName: string;
 }

@@ -16,4 +16,12 @@ export class AdoptionRequestsApiService {
   list(): Observable<AdoptionRequestDto[]> {
     return this.http.get<AdoptionRequestDto[]>(this.baseUrl);
   }
+
+  getById(id: number): Observable<AdoptionRequestDto> {
+    return this.http.get<AdoptionRequestDto>(`${this.baseUrl}/${id}`);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }

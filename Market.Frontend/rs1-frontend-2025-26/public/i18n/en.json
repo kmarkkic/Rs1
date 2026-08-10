@@ -33,6 +33,8 @@
       "PRODUCTS": "Products",
       "ORDERS_SECTION": "ORDERS",
       "ORDERS": "Orders Overview",
+      "ADOPTION_REQUESTS_SECTION": "ADOPTION",
+      "ADOPTION_REQUESTS": "Adoption Requests",
       "SYSTEM": "SYSTEM",
       "SETTINGS": "Settings",
       "LOGOUT": "Logout"

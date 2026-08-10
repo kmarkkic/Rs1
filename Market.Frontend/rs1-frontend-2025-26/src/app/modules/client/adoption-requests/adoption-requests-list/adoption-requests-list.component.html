@@ -1,0 +1,50 @@
+<div class="adoption-requests-list-header">
+  <h2>Zahtjevi za udomljavanje</h2>
+</div>
+
+<table mat-table [dataSource]="requests()" class="adoption-requests-table">
+
+  <ng-container matColumnDef="animal">
+    <th mat-header-cell *matHeaderCellDef>Životinja</th>
+    <td mat-cell *matCellDef="let request">
+      <div class="animal-cell">
+        <img *ngIf="request.animalImageUrl" [src]="request.animalImageUrl" [alt]="request.animalName" class="animal-thumb" />
+        <span>{{ request.animalName }}</span>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="applicant">
+    <th mat-header-cell *matHeaderCellDef>Podnosilac</th>
+    <td mat-cell *matCellDef="let request">{{ request.applicantFullName || '—' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let request">{{ request.statusName ?? '—' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef>Datum kreiranja</th>
+    <td mat-cell *matCellDef="let request">{{ request.createdAtUtc | date: 'dd.MM.yyyy. HH:mm' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Akcije</th>
+    <td mat-cell *matCellDef="let request">
+      <button mat-icon-button color="primary" (click)="viewDetails(request)" matTooltip="Detalji">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteRequest(request)" matTooltip="Obriši">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">Nema zahtjeva za udomljavanje</td>
+  </tr>
+</table>

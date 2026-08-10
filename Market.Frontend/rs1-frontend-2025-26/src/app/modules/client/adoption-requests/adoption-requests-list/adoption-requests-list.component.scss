@@ -1,0 +1,30 @@
+.adoption-requests-list-header {
+  margin-bottom: 16px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.adoption-requests-table {
+  width: 100%;
+
+  .animal-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .animal-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 24px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+}
